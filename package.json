@@ -1,0 +1,37 @@
+{
+  "name": "brutto-netto-batman",
+  "version": "0.5.0",
+  "description": "a simple open source salary calculator for austria",
+  "main": "index.js",
+  "dependencies": {
+    "grunt": "~0.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k9ordon/brutto-netto-batman.git"
+  },
+  "keywords": [
+    "salary",
+    "calculator",
+    "austria"
+  ],
+  "author": "k9ordon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/k9ordon/brutto-netto-batman/issues"
+  },
+  "devDependencies": {
+    "grunt-cli": "~0.1.9",
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jade": "~0.8.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-sass": "~0.6.1"
+  }
+}

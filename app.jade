@@ -1,0 +1,16 @@
+!!! 5
+html
+    head
+        title Brutto Netto Batman
+        link(href='app.css', rel='stylesheet')
+    body
+        div#calculator
+            select#year
+                option 2013
+            select#type
+                option(value='angestellte') Angestellter
+                option(value='arbeiter') Arbeiter
+            input#brutto(type='text',placeholder='Brutto')
+            input#netto(type='text',placeholder='Netto',disabled)
+
+        script(src="app.js", type='text/javascript')

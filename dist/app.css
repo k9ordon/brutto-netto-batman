@@ -1,9 +1,81 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic);
+body, input, select {
+  font-family: 'Lato', sans-serif; }
+
+html, body {
+  width: 100%; }
+
 body {
-  background: white; }
-  body #calculator input, body #calculator select {
-    font-size: 32px;
-    border: 0px dotted black;
-    background: transparent;
-    outline: 0px; }
-  body #calculator #brutto {
-    border-bottom-width: 1px; }
+  background: #f0d8a8;
+  color: #3d1c00;
+  margin: 0;
+  font-size: 58px;
+  line-height: 78px;
+  font-weight: 900; }
+  body #calculator {
+    width: 90%;
+    margin: 0 auto 10%; }
+    body #calculator p {
+      margin: 0;
+      padding: 0; }
+      body #calculator p span {
+        white-space: nowrap; }
+    body #calculator input, body #calculator select {
+      font-size: 58px;
+      line-height: 78px;
+      border: 0px dotted black;
+      background: transparent;
+      outline: 0px;
+      color: #fa2a00;
+      -webkit-appearance: none;
+      padding: 0;
+      width: 100%;
+      font-weight: 900;
+      text-overflow: ellipsis;
+      overflow: hidden; }
+      body #calculator input::-webkit-input-placeholder, body #calculator select::-webkit-input-placeholder {
+        color: #fa2a00; }
+      body #calculator input:disabled, body #calculator select:disabled {
+        color: #3d1c00;
+        text-decoration: none; }
+        body #calculator input:disabled::-webkit-input-placeholder, body #calculator select:disabled::-webkit-input-placeholder {
+          color: #3d1c00;
+          text-decoration: none; }
+      body #calculator input.hidden, body #calculator select.hidden {
+        display: none; }
+    body #calculator select {
+      text-decoration: none;
+      vertical-align: bottom; }
+    body #calculator #typeSection, body #calculator #yearSection {
+      font-size: 32px;
+      line-height: 40px; }
+      body #calculator #typeSection span, body #calculator #yearSection span {
+        display: inline-block; }
+      body #calculator #typeSection label, body #calculator #typeSection select, body #calculator #yearSection label, body #calculator #yearSection select {
+        font-size: 32px;
+        line-height: 40px;
+        height: 40px; }
+    body #calculator #yearSection {
+      margin-top: 10%; }
+    body #calculator #typeSection {
+      padding-bottom: 80px;
+      margin-bottom: 0px;
+      border-bottom: 0px solid #3d1c00; }
+    body #calculator #chart {
+      margin-top: -300px;
+      height: 300px;
+      width: 100%;
+      opacity: 1;
+      pointer-events: none;
+      z-index: 0;
+      position: relative; }
+    body #calculator #bruttoSection {
+      margin-top: 30px; }
+    body #calculator #year {
+      max-width: 250px; }
+    body #calculator #type {
+      max-width: 250px; }
+    body #calculator #brutto {
+      max-width: 250px; }
+    body #calculator #netto {
+      max-width: 250px; }

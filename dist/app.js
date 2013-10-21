@@ -307,7 +307,8 @@ var data2013angestellte = [
 ["6000","3.449,35","3.490,51","802,31","7.536,25"]
 ];;
 (function() {
-  var App;
+  var App,
+    _this = this;
 
   App = (function() {
     function App() {
@@ -355,11 +356,95 @@ var data2013angestellte = [
       return console.log("" + brutto + " not found");
     };
 
+    App.prototype.drawChart = function(google) {
+      var cell, chart, data, formatedData, idx, newRow, options, row, _i, _j, _len, _len1, _ref;
+      console.log(this.data);
+      formatedData = [[0, 'Bruttobezug', 'Nettobezug', 'Dienstgeber']];
+      _ref = this.data;
+      for (idx = _i = 0, _len = _ref.length; _i < _len; idx = ++_i) {
+        row = _ref[idx];
+        if (idx % 20) {
+          continue;
+        } else {
+          newRow = [];
+          newRow.push(idx);
+          for (idx = _j = 0, _len1 = row.length; _j < _len1; idx = ++_j) {
+            cell = row[idx];
+            if (idx === 0 || idx === 1 || idx === 4) {
+              cell = cell.replace('.', '');
+              cell = cell.replace(',', '.');
+              cell = parseInt(cell);
+              newRow.push(cell);
+              console.log(cell);
+            }
+          }
+          formatedData.push(newRow);
+        }
+      }
+      console.log(formatedData);
+      data = google.visualization.arrayToDataTable(formatedData);
+      options = {
+        backgroundColor: {
+          fill: 'transparent',
+          stroke: 'transparent',
+          strokeWidth: 0
+        },
+        chartArea: {
+          top: '1px',
+          height: '100%',
+          left: '1px',
+          width: '100%'
+        },
+        curveType: 'function',
+        legend: {
+          position: 'none'
+        },
+        grid: {
+          borderWidth: 0,
+          shadow: false
+        },
+        enableInteractivity: false,
+        vAxis: {
+          baselineColor: 'transparent',
+          gridlines: {
+            color: 'transparent'
+          },
+          viewWindow: {
+            min: 700,
+            max: 7000
+          },
+          viewWindowMode: 'maximized'
+        },
+        hAxis: {
+          format: ' ',
+          baselineColor: 'transparent',
+          gridlines: {
+            color: 'transparent'
+          }
+        },
+        colors: ['#3D1C00', '#FA2A00', '#86B8B1'],
+        lineWidth: 1,
+        pointSize: 4
+      };
+      chart = new google.visualization.LineChart(document.querySelector('#chart'));
+      return chart.draw(data, options);
+    };
+
     return App;
 
   })();
 
   window.app = new App;
+
+  google.load("visualization", "1", {
+    packages: ["corechart"]
+  });
+
+  console.log(google);
+
+  google.setOnLoadCallback(function(e) {
+    return window.app.drawChart(google);
+  });
 
 }).call(this);
 

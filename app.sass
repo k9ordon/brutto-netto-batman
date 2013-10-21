@@ -1,21 +1,150 @@
+// http://www.colourlovers.com/palette/656966/Koi_Carp
+$c1: #F0D8A8;
+$c2: #3D1C00;
+$c3: #86B8B1;
+$c4: #F2D694;
+$c5: #FA2A00;
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}
+
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic);
+
+body, input, select {
+    font-family: 'Lato', sans-serif;
+}
+
+html, body {
+    width:100%;
+}
+
 body {
-    background: white;
+    background: $c1;
+    color: $c2;
+    margin: 0;
+    font-size: 58px;
+    line-height: 78px;
+    font-weight: 900;
 
     #calculator {
+        width:90%;
+        margin: 0 auto 10%;
+
+        p {
+            margin: 0;
+            padding:0;
+            span {
+                white-space: nowrap;
+            }
+        }
+
         input, select {
-            font-size: 32px;
-            border:0px dotted black;
+
+            font-size: 58px;
+            line-height: 78px;
+            border:0px dotted #000000;
             background: transparent;
             outline: 0px;
+            color: $c5;
+            -webkit-appearance: none;
+            //text-decoration: underline;
+            padding:0;
+            width: 100%;
+
+            font-weight: 900;
+
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+            &::-webkit-input-placeholder {
+                color: $c5;
+                //text-decoration: underline;
+            }
+
+            &:disabled {
+                color: $c2;
+                text-decoration: none;
+
+                &::-webkit-input-placeholder {
+                    color: $c2;
+                    text-decoration: none;
+                }
+            }
+
+            &.hidden {
+                display: none;
+            }
         }
+
+        select {
+            //color: $c3;
+            text-decoration: none;
+            vertical-align: bottom;
+        }
+
+        input {
+            &:disabled {
+            }
+        }
+
+        #typeSection, #yearSection {
+            font-size: 32px;
+            line-height: 40px;
+
+            span {
+                display: inline-block;
+            }
+
+            label, select {
+                font-size: 32px;
+                line-height: 40px;
+                height: 40px;
+            }
+        }
+
+        #yearSection {
+            margin-top: 10%;
+        }
+
+        #typeSection {
+            padding-bottom:80px;
+            margin-bottom:0px;
+            border-bottom:0px solid $c2;
+        }
+
+        #chart {
+            margin-top:-300px;
+            height: 300px;
+            width:100%;
+            opacity: 1;
+            pointer-events: none;
+            z-index: 0;
+            position: relative;
+        }
+
+        #bruttoSection {
+            margin-top:30px;
+        }
+
+
         #year {
             //display: none
+            max-width: 250px;
         }
         #type {
-
+            max-width: 250px;
         }
+
         #brutto {
-            border-bottom-width:1px;
+            // border-bottom-width:1px;
+            max-width: 250px;
+        }
+        #netto {
+            max-width: 250px;
         }
     }
 }

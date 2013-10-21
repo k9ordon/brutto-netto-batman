@@ -3,15 +3,33 @@ html
     head
         title Brutto Netto Batman
         link(href='app.css', rel='stylesheet')
+        meta(name='viewport',content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1')
+
     body
         div#calculator
-            select#year
-                option 2013
-                // option 2012
-            select#type
-                option(value='angestellte') Angestellter
-                // option(value='arbeiter') Arbeiter
-            input#brutto(type='text',placeholder='Brutto')
-            input#netto(type='text',placeholder='Netto',disabled)
+            p#yearSection
 
-        script(src="app.js", type='text/javascript')
+                | Bat-Year 
+                select#year
+                    option 2013
+                    // option 2012
+            p#typeSection
+                | Bat-Type 
+                select#type
+                    option(value='angestellte') Angestellter
+                    option(value='arbeiter') Arbeiter
+
+            div#chart
+
+            p#bruttoSection
+                |Brutto 
+                span 
+                    &euro; 
+                    input#brutto(type='number',placeholder='0')
+            p#nettoSection
+                |in Netto 
+                span 
+                    &euro; 
+                    input#netto(type='text',placeholder='0',disabled)
+        script(type='text/javascript', src="https://www.google.com/jsapi")
+        script(type='text/javascript', src="app.js")

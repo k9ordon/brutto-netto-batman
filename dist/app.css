@@ -56,21 +56,20 @@ body {
         line-height: 40px;
         height: 40px; }
     body #calculator #yearSection {
-      margin-top: 10%; }
+      margin-top: 140px; }
     body #calculator #typeSection {
       padding-bottom: 80px;
       margin-bottom: 0px;
       border-bottom: 0px solid #3d1c00; }
     body #calculator #chart {
-      margin-top: -300px;
-      height: 300px;
+      margin-top: -200px;
+      height: 200px;
       width: 100%;
-      opacity: 1;
-      pointer-events: none;
+      opacity: 0.5;
       z-index: 0;
       position: relative; }
     body #calculator #bruttoSection {
-      margin-top: 30px; }
+      margin-top: 0px; }
     body #calculator #year {
       max-width: 250px; }
     body #calculator #type {

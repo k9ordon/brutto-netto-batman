@@ -17,7 +17,7 @@ html
                 | Bat-Type 
                 select#type
                     option(value='angestellte') Angestellter
-                    option(value='arbeiter') Arbeiter
+                    // option(value='arbeiter') Arbeiter
 
             div#chart
 
@@ -25,7 +25,7 @@ html
                 |Brutto 
                 span 
                     &euro; 
-                    input#brutto(type='number',placeholder='0')
+                    input#brutto(type='tel',placeholder='0',pattern='\d*')
             p#nettoSection
                 |in Netto 
                 span 

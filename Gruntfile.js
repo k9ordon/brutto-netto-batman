@@ -5,7 +5,7 @@ module.exports = function(grunt) {
             options: { separator: ';\n' },
             app: {
                 files: {
-                    'dist/app.js': [ 'data/*.js', 'dist/app.js' ]
+                    'dist/app.js': [ 'dist/app.js' ]
                 },
             }
         },
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
             app: {
                 options: { sourceMap: true },
                 files: {
-                    'dist/app.js': [ 'app.coffee' ]
+                    'dist/app.js': ['calculator.coffee', 'app.coffee']
                 }
             }
         },

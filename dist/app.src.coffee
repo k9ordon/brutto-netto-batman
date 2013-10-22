@@ -115,15 +115,15 @@ class App
 
         chartData = [] #[[0, 'Bruttobezug', 'Nettobezug', 'annotation']];
         for brutto in [0...7000]
-            if brutto % 200
+            if brutto % 500
                 continue;
             else
                 cC.setBrutto brutto
                 res = cC.calculate()
-                row = [brutto, brutto, null, res.netto]
+                row = [brutto, res.netto, ''+parseInt(res.netto), brutto, null]
                 console.log brutto, @brutto
                 if (brutto >= @brutto) && isCurrentPlotted == false
-                    row[2] = 'You'
+                    row[4] = 'You'
                     isCurrentPlotted = true
                 chartData.push row
 
@@ -135,6 +135,7 @@ class App
         data.addColumn("number", "Bruttobezug");
         data.addColumn({ type: "string", role: "annotation" });
         data.addColumn("number", "Nettobezug");
+        data.addColumn({ type: "string", role: "annotation" });
         data.addRows(chartData)
         
         options = { 
@@ -164,9 +165,9 @@ class App
                     color: 'transparent'
                 }
             }
-            colors: ['#FA2A00','#3D1C00']
+            colors: ['#3D1C00','#FA2A00']
             lineWidth: 1
-            pointSize: 4
+            pointSize: 3
         }
 
         chart = new google.visualization.LineChart(document.querySelector('#chart'));

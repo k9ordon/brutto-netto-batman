@@ -1,6 +1,7 @@
 class App
     constructor: ->
         @dom()
+        @sub()
         @events()
         @changeDataset()
 
@@ -10,46 +11,61 @@ class App
         @$brutto = document.querySelector '#brutto'
         @$netto = document.querySelector '#netto'
 
+    sub: ->
+        @calculator = new Calculator
+
     events: ->
         @$type.addEventListener 'change', => @changeDataset()
         @$year.addEventListener 'change', => @changeDataset()
+        #@$brutto.addEventListener 'keydown', (e) => @validateFloat(e)
         @$brutto.addEventListener 'keyup', => @calculateNetto()
+        window.addEventListener 'resize', => @drawChart()
 
-    changeDataset: () ->
-        @data = window['data'+@$year.value+@$type.value]
+    changeDataset: ->
+        @calculator.setType @$type.value 
+
+    validateFloat: (e) ->
+        charCode = e.which
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return e.preventDefault()
+        return true
 
     calculateNetto: ->
-        brutto = Math.round(@$brutto.value / 10) * 10 + '' # we need string here - damn input data
-        for row in @data
-            if row[0] == brutto
-                @$netto.value = row[1]
-                return true
+        @brutto = parseFloat(@$brutto.value);
+        @calculator.setBrutto @brutto
+        res = @calculator.calculate()
+        console.log res
+        @$netto.value = res.netto
+        @drawChart()
+        
+    drawChart:() ->
+        cC = new Calculator
+        cC.setType @$type.value
+        isCurrentPlotted = false
 
-        @$netto.value = ''
-        console.log "#{brutto} not found"
-
-    drawChart: (google) ->
-        console.log @data
-
-        formatedData = [[0, 'Bruttobezug', 'Nettobezug', 'Dienstgeber']];
-        for row, idx in @data
-            if idx % 20
+        chartData = [] #[[0, 'Bruttobezug', 'Nettobezug', 'annotation']];
+        for brutto in [0...7000]
+            if brutto % 200
                 continue;
             else
-                newRow = []
-                newRow.push idx
-                for cell, idx in row
-                    if idx == 0 || idx == 1 || idx == 4
-                        cell = cell.replace '.', ''
-                        cell = cell.replace ',', '.'
-                        cell = parseInt(cell)
-                        newRow.push cell
-                        console.log cell
-                formatedData.push newRow
+                cC.setBrutto brutto
+                res = cC.calculate()
+                row = [brutto, brutto, null, res.netto]
+                console.log brutto, @brutto
+                if (brutto >= @brutto) && isCurrentPlotted == false
+                    row[2] = 'You'
+                    isCurrentPlotted = true
+                chartData.push row
 
-        console.log formatedData
+        #data = google.visualization.arrayToDataTable chartData
+        data = new google.visualization.DataTable();
 
-        data = google.visualization.arrayToDataTable formatedData
+        #data.addColumn("string", "Year");
+        data.addColumn("number", "Bruttobezug");
+        data.addColumn("number", "Bruttobezug");
+        data.addColumn({ type: "string", role: "annotation" });
+        data.addColumn("number", "Nettobezug");
+        data.addRows(chartData)
         
         options = { 
             backgroundColor: {
@@ -57,20 +73,17 @@ class App
                 stroke: 'transparent'
                 strokeWidth: 0
             }
+            interpolateNulls:true
             # backgroundColor.strokeWidth: 0
-            chartArea : { top:'1px', height:'100%', left:'1px', width:'100%' }
+            chartArea : { top:'1%', height:'98%', left:'1%', width:'98%' }
             curveType: 'function'
             legend: {position: 'none'}
             grid:{borderWidth:0, shadow:false} 
-            enableInteractivity: false
+            enableInteractivity: true
             vAxis: {
                 baselineColor: 'transparent'
                 gridlines: {
                     color: 'transparent'
-                }
-                viewWindow: {
-                    min: 700
-                    max: 7000
                 }
                 viewWindowMode: 'maximized'
             }
@@ -81,7 +94,7 @@ class App
                     color: 'transparent'
                 }
             }
-            colors: ['#3D1C00','#FA2A00', '#86B8B1']
+            colors: ['#FA2A00','#3D1C00']
             lineWidth: 1
             pointSize: 4
         }

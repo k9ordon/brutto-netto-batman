@@ -168,15 +168,15 @@
       isCurrentPlotted = false;
       chartData = [];
       for (brutto = _i = 0; _i < 7000; brutto = ++_i) {
-        if (brutto % 200) {
+        if (brutto % 500) {
           continue;
         } else {
           cC.setBrutto(brutto);
           res = cC.calculate();
-          row = [brutto, brutto, null, res.netto];
+          row = [brutto, res.netto, '' + parseInt(res.netto), brutto, null];
           console.log(brutto, this.brutto);
           if ((brutto >= this.brutto) && isCurrentPlotted === false) {
-            row[2] = 'You';
+            row[4] = 'You';
             isCurrentPlotted = true;
           }
           chartData.push(row);
@@ -190,6 +190,10 @@
         role: "annotation"
       });
       data.addColumn("number", "Nettobezug");
+      data.addColumn({
+        type: "string",
+        role: "annotation"
+      });
       data.addRows(chartData);
       options = {
         backgroundColor: {
@@ -227,9 +231,9 @@
             color: 'transparent'
           }
         },
-        colors: ['#FA2A00', '#3D1C00'],
+        colors: ['#3D1C00', '#FA2A00'],
         lineWidth: 1,
-        pointSize: 4
+        pointSize: 3
       };
       chart = new google.visualization.LineChart(document.querySelector('#chart'));
       return chart.draw(data, options);

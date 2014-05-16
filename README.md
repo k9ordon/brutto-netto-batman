@@ -9,4 +9,4 @@ A simple open-source coffeescript brutto-/netto-lohn-vergleichs-rechner.
 
 ## Usage
 
-- Run on github page [Start](http://k9ordon.github.io/brutto-netto-batman/dist/)
+- [Run](http://k9ordon.github.io/brutto-netto-batman/dist/) on github page

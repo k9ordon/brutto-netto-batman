@@ -1,8 +1,12 @@
 brutto-netto-batman
 ===================
 
-simple open-source javascript brutto-/netto-lohn-vergleichs-rechner.
+A simple open-source coffeescript brutto-/netto-lohn-vergleichs-rechner.
 
-Data from the famous wko [link](http://portal.wko.at/wk/suche.wk?sortierung=chronologisch&angid=1&itemoffset=0&pagesize=20&reiter=internetaktiveinhalte&dstid=0&chid=0&details=1&suchbegrifftext=Brutto%20Netto%20Tabelle&quicksearch_submit=Suchen&calculatelakaordstfilter=1&lakadgordstfilterid=-1)
+## Credits
 
-**[Start/Starten](http://k9ordon.github.io/brutto-netto-batman/dist/)** (GH-Page hosted)
+- heavy inspired from [bruttonetto.py](http://www.sthu.org/code/codesnippets/bruttonetto.html) by [Stefan Huber](http://www.sthu.org/)
+
+## Usage
+
+- Run on github page [Start](http://k9ordon.github.io/brutto-netto-batman/dist/)
